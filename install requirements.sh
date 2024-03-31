@@ -20,3 +20,4 @@ echo "Installing required Python modules..."
 sudo pip3 install --upgrade pip
 sudo pip3 install os time sqlite3 termcolor
 echo "Required Python modules installed successfully."
+cp bnmanager.py /bin/bnmanager.py
