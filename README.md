@@ -46,7 +46,12 @@ To get started with BNManager, follow these steps:
     sudo bash install_requirements.sh
     ```
 
-4. Launch BNManager:
+4. Give bnmanager.py executable permissions:
+   ```bash
+   chmod +x bnmanager.py
+   ```
+   
+5. Launch BNManager:
     ```bash
     python3 bnmanager.py
     ```
