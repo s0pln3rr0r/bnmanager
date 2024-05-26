@@ -58,6 +58,7 @@ def bind_botSelector_start():
         )
         cprint("BindShell> ", "green", attrs=["bold"], end="")
         pre_payload = input()
+        pre_payload=pre_payload+" > /dev/null"
         cprint("\nSelect the type of payload you want", attrs=["bold"])
         cprint(
             """1. Python3
