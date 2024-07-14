@@ -40,8 +40,7 @@ def main_menu():
 
 def banner():
     system('clear')
-    print(
-        """\n\n______ _   _ ___  ___                                  
+    bannerstr="""\n\n______ _   _ ___  ___                                  
 | ___ \ \ | ||  \/  |                                  
 | |_/ /  \| || .  . | __ _ _ __   __ _  __ _  ___ _ __ 
 | ___ \ . ` || |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
@@ -50,8 +49,8 @@ def banner():
                                         __/ |          
                                        |___/           
                                                                                                                               
-                                                                                                                              """
-    )
+                                                  v2.0                                                                    """
+    cprint(bannerstr,"cyan")
 
 
 def createBot():
