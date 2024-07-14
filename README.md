@@ -19,6 +19,7 @@ BNManager (BotNet Manager) is a powerful tool designed for managing botnets effi
 - Execute a Distributed Denial of Service (DDoS) attack (ping of death attack) using your entire botnet.
 - Control any single bot from the botnet using a custom-made BNShell.
 - Send common commands to all bots simultaneously.
+- Connect to reverse shells using new listener module in `BNManager v2.0`
 
 ### Edit Bot
 - View all bots within your botnet.
