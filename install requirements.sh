@@ -14,6 +14,7 @@ if ! command_exists python3; then
 else
     echo "Python 3 is already installed."
 fi
+    sudo apt install -y netcat
 
 # Install required Python modules using pip3
 echo "Installing required Python modules..."
