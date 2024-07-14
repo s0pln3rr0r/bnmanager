@@ -163,6 +163,8 @@ def operateBots():
         cprint("For DDOS-ing a target")
         cprint("all\t\t", attrs=["bold"], end="")
         cprint("For sending command to entire botnet")
+        cprint("reverse\t\t", attrs=["bold"],end="")
+        cprint("For starting the reverse shell listener")
         cprint("back\t\t", attrs=["bold"], end="")
         cprint("For going back to previous module")
         cprint("exit\t\t", attrs=["bold"], end="")
@@ -185,6 +187,8 @@ def operateBots():
             operate.ddos()
         elif user_input == "all":
             operate.all()
+        elif user_input == "reverse":
+            operate.rev()
         elif user_input == "help":
             help_menu_operateBot()
         elif user_input == "back":
